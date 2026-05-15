@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv/config";
-// import { veryfication } from "../midlewere/token.js";
+// import { verification } from "../middlewere/tokenVerify.js";
+import { verifyMail } from "../mailVerify/mailverify.js";
 
 
 
@@ -61,10 +62,14 @@ export const Registration = async (req,res)=>{
         const hashpassword = await bcrypt.hash(password, 10)
         const user = await userSchema.create({userName,email,password:hashpassword})
 
+       
         const token = jwt.sign({userId:user._id }, process.env.secretKey, {
             expiresIn : "5m"
 
+            
+
         } )
+            verifyMail (token,email)
             user.token = token
             await user.save()
             return res.status(201).json({

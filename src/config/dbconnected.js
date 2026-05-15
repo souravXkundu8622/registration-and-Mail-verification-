@@ -9,7 +9,7 @@ export default async function dbconnected() {
     try {
 
        await mongoose.connect(url)
-       console.log("mongodb connected sucessfully");
+       console.log("mongodb connected successfully");
        
 
         

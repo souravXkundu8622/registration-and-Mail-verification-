@@ -1,8 +1,7 @@
 
 import express from "express";
 import { Registration } from "../controller/userController.js";
-import { verification } from "../midlewere/tokenVerify.js";
-// import { veryfication } from "../midlewere/tokenVeryfi.js";
+import { verification } from "../middlewere/tokenVerify.js";
 
 
 
